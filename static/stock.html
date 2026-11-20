@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>종목 분석 - 첫주식</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="/" aria-label="첫주식 홈">
+      <svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" style="fill:var(--brand)"/><path d="M7 21l5-6 4 3 7-9" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      첫주식
+    </a>
+    <nav class="nav" aria-label="주요 메뉴"><a href="/">오늘의 판정</a><a href="/#guide">처음이라면</a></nav>
+    <div class="search">
+      <label class="sr" for="q">종목 검색</label>
+      <input id="q" type="search" placeholder="종목 이름 검색" autocomplete="off">
+      <ul id="q-list" hidden></ul>
+    </div>
+  </div>
+</header>
+
+<div class="layout detail" id="content">
+  <main class="main"><section class="card"><p class="none">종목을 분석하고 있어요</p></section></main>
+</div>
+
+<footer>
+  <p>첫주식의 정보는 과거 가격으로 계산한 참고 자료이며 투자 권유가 아닙니다. 투자 판단과 그 결과의 책임은 투자자 본인에게 있습니다.</p>
+  <p>시세는 장 마감 가격 기준이며 실제 가격과 차이가 있을 수 있습니다.</p>
+</footer>
+
+<script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"
+  integrity="sha384-OK7vELvjHdhUFi31JYioPIcRHTROLdcDa6ZsNWgvgLaKj+9JqhU0Ad8g4wz3CXjA" crossorigin="anonymous"></script>
+<script src="/static/common.js"></script>
+<script src="/static/detail.js"></script>
+</body>
+</html>

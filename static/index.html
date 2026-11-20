@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>첫주식 - 처음 하는 주식, 살 가격과 팔 가격까지</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="/" aria-label="첫주식 홈">
+      <svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" style="fill:var(--brand)"/><path d="M7 21l5-6 4 3 7-9" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      첫주식
+    </a>
+    <nav class="nav" aria-label="주요 메뉴"><a href="/" aria-current="page">오늘의 판정</a><a href="#guide">처음이라면</a></nav>
+    <div class="search">
+      <label class="sr" for="q">종목 검색</label>
+      <input id="q" type="search" placeholder="종목 이름 검색" autocomplete="off">
+      <ul id="q-list" hidden></ul>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <main class="main">
+    <section class="card today">
+      <div>
+        <small class="muted" id="asof">시세를 불러오는 중이에요</small>
+        <h1 id="headline">오늘의 판정을 준비하고 있어요</h1>
+      </div>
+      <div class="stat" id="stat"></div>
+    </section>
+
+    <section class="card" id="picks">
+      <div class="card-h"><h2>오늘의 추천</h2><small>오름세 속에서 가격이 쉬어가는 종목</small></div>
+      <div class="picks" id="pick-list"></div>
+    </section>
+
+    <section class="card" id="all">
+      <div class="tabs" id="tabs" role="group" aria-label="판정으로 거르기">
+        <button data-f="all" aria-pressed="true">전체</button>
+        <button data-f="buy" aria-pressed="false">사볼 만해요</button>
+        <button data-f="wait" aria-pressed="false">기다려요</button>
+        <button data-f="avoid" aria-pressed="false">쉬어가요</button>
+      </div>
+      <div class="filters">
+        <label class="sr" for="sector">업종</label>
+        <select id="sector"><option value="all">전체 업종</option></select>
+        <label class="sr" for="market">시장</label>
+        <select id="market"><option value="all">코스피·코스닥</option><option>코스피</option><option>코스닥</option></select>
+        <label class="sr" for="sort">정렬</label>
+        <select id="sort">
+          <option value="rec">추천순</option>
+          <option value="risk">덜 출렁이는 순</option>
+          <option value="up">오늘 많이 오른 순</option>
+          <option value="down">오늘 많이 내린 순</option>
+        </select>
+      </div>
+      <div class="thead" aria-hidden="true"><span>종목</span><span>현재가</span><span>살 가격</span><span>목표가</span><span>판정</span></div>
+      <div id="list"><div class="empty-row">불러오는 중이에요</div></div>
+      <button class="more" id="more" hidden></button>
+    </section>
+  </main>
+
+  <aside class="side">
+    <section class="card" id="record" hidden>
+      <div class="card-h"><h2>과거 성적</h2><small id="record-period"></small></div>
+      <p class="big-num" id="record-big"></p>
+      <div id="record-bar"></div>
+      <ul class="kv" id="record-nums"></ul>
+      <details>
+        <summary>판정별로 비교하기</summary>
+        <table class="cmp" id="record-table"></table>
+        <ul class="notes" id="record-notes"></ul>
+      </details>
+    </section>
+
+    <section class="card" id="guide">
+      <div class="card-h"><h2>처음이라면</h2></div>
+      <ol class="steps">
+        <li><div><b>매수 구간에서 나눠 사요</b><span>2~3번에 나눠 사면 사자마자 떨어져도 덜 아파요.</span></div></li>
+        <li><div><b>목표가에 닿으면 팔아요</b><span>절반만 팔고 나머지는 지켜봐도 좋아요.</span></div></li>
+        <li><div><b>손절가 아래면 아깝더라도 팔아요</b><span>손실을 작게 끊어야 다음 기회가 와요.</span></div></li>
+      </ol>
+      <div class="legend-mini">
+        <div class="ladder" role="img" aria-label="가격 막대 예시">
+          <div class="track"></div><div class="loss" style="width:14%"></div>
+          <div class="zone" style="left:24%;width:18%"></div><div class="goal" style="left:88%"></div><div class="now" style="left:36%"></div>
+        </div>
+        <dl>
+          <dt>빗금</dt><dd>손절가 아래. 예상이 틀렸으니 파는 구간</dd>
+          <dt>초록 상자</dt><dd>매수 구간. 사기 좋은 가격대</dd>
+          <dt>동그라미</dt><dd>오늘 장 마감 가격</dd>
+          <dt>초록 막대</dt><dd>목표가. 수익을 챙기는 가격</dd>
+        </dl>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<footer>
+  <p>첫주식의 정보는 과거 가격으로 계산한 참고 자료이며 투자 권유가 아닙니다. 투자 판단과 그 결과의 책임은 투자자 본인에게 있습니다.</p>
+  <p>시세는 장 마감 가격 기준이며 실제 가격과 차이가 있을 수 있습니다.</p>
+</footer>
+
+<script src="/static/common.js"></script>
+<script src="/static/home.js"></script>
+</body>
+</html>
